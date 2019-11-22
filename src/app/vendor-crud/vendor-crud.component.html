@@ -1,0 +1,72 @@
+<div class="container">
+    <br>
+    <br>
+    <h2 style="text-align:center"><b>Vendor Details</b></h2>
+    <br>
+    <br>
+    <section id="cover">
+        <form #myform="ngForm">
+            <div class="form-group row">
+                <label for="example-text-input" class="col-sm-2 col-form-label">Vendor Name</label>
+                <div class="col-sm-10">
+                    <input class="form-control" type="text" [(ngModel)]="ven.vd_name" name="vd_name">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2">Vendor Type </label>
+                <div class="col-sm-10">
+                    <select class="form-control" [(ngModel)]="ven.vd_type" name="vd_type">
+                        <option disabled>--select type--</option>
+                        <ng-container *ngFor="let vd of vendor">
+                            <option value={{vd}}>{{vd}}</option>
+                        </ng-container>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="example-text-input" class="col-sm-2 col-form-label">Vendor atype</label>
+                <div class="col-sm-10">
+                    <input class="form-control" type="text" [(ngModel)]="ven.vd_atype" name="vd_atype">
+                </div>
+            </div>
+
+
+            <div class="form-group row">
+                <label for="example-text-input" class="col-sm-2 col-form-label">Vendor From date</label>
+                <div class="col-sm-10">
+                    <input class="form-control" type="date" [(ngModel)]="ven.vd_from" name="vd_from">
+                </div>
+            </div>
+
+
+            <div class="form-group row">
+                <label for="example-text-input" class="col-sm-2 col-form-label">Vendor To date</label>
+                <div class="col-sm-10">
+                    <input class="form-control" type="date" [(ngModel)]="ven.vd_to" name="vd_to">
+                </div>
+            </div>
+
+
+            <div class="form-group row">
+                <label for="example-text-input" class="col-sm-2 col-form-label">Vendor Address</label>
+                <div class="col-sm-10">
+                    <input class="form-control" type="text" [(ngModel)]="ven.vd_addr" name="vd_addr">
+                </div>
+            </div>
+
+
+            <br>
+
+
+            <button type="button" class="btn btn-success" (click)="addVendor()"
+                style="width:80px; height:40px; float:right; margin-right: 2%">Save</button>
+
+
+            <button type="button" class="btn btn-primary" (click)="cancel()"
+                style="width:80px; height:40px; float:left; margin-left: 20%">Cancel</button>
+        </form>
+    </section>
+
+</div>

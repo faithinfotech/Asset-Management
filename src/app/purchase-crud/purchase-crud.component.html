@@ -1,0 +1,90 @@
+
+<div class="container">
+   
+    <br>
+    <h2 style="text-align:center"><b>Purchase Details</b></h2>
+    <br>
+    <section id="cover">
+        <form #myform="ngForm">
+        <div class="form-group row">
+            <label for="example-text-input" class="col-sm-2 col-form-label">Purchase Order</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="text" [(ngModel)]="purchaseObj.pd_order" name="pd_order">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-2">Purchase Type </label>
+            <div class="col-sm-10">
+                <select class="form-control" [(ngModel)]="purchaseObj.pd_type" name="pd_type">
+                    <option disabled>--select type--</option>
+                    <ng-container *ngFor="let pd of purchase">
+                        <option value={{pd}}>{{pd}}</option>
+                    </ng-container>
+                </select>
+            </div>
+        </div>
+       
+        <div class="form-group row">
+            <label for="example-text-input" class="col-sm-2 col-form-label">Purchase Quantity</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="text" [(ngModel)]="purchaseObj.pd_qty" name="pd_qty">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="example-text-input" class="col-sm-2 col-form-label">Purchase Vendor</label>
+            <div class="col-sm-10">
+                <select class="form-control" [(ngModel)]="purchaseObj.pd_vendor" name="pd_vendor">
+                    <option disabled>--select Name--</option>
+                    <ng-container *ngFor="let pName of crud">
+                        <option value={{pName}}>{{pName}}</option>
+                    </ng-container>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="example-text-input" class="col-sm-2 col-form-label">Purchase Date</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="date" [(ngModel)]="purchaseObj.pd_date" name="pd_date">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-2">Purchase Status</label>
+            <div class="col-sm-10">
+                <select class="form-control" [(ngModel)]="purchaseObj.pd_status" name="pd_status">
+                    <option disabled>--select status--</option>
+                    <option value="PO-Raised with Supplier">PO-Raised with Supplier</option>
+                    <option value="Awaiting Delivery by Supplier">Awaiting Delivery by Supplier</option>
+                    <option value="Consignment Recieved">Consignment Recieved</option>
+                    <option value="Asset Details registered internally">Asset Details registered internally</option>
+                    <option value="Asset Allocated to Resources">Asset Allocated to Resources</option>
+                    <option value="Identified Faulty">Identified Faulty</option>
+                    <option value="Replaced-Repaired">Replaced-Repaired</option>
+                </select>
+            </div>
+        </div>
+
+
+
+        <br>
+
+        
+            <button type="button" class="btn btn-success" (click)="addPurchase()" 
+            style="width:80px; height:40px; float:right; margin-right: 2%">Save</button>
+   
+        
+       
+           
+
+        <button type="button" class="btn btn-primary" (click)="cancel()"
+            style="width:80px; height:40px; float:left; margin-left: 20%">Cancel</button>
+        </form>
+    </section>
+   
+</div>
+
+
+

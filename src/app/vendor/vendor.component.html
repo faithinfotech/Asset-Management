@@ -1,0 +1,79 @@
+<div class="container-fluid">
+    <br>
+    <h2 style="text-align:center"><b>Vendor Details</b></h2>
+    <br>
+    <br>
+    <div class="form-inline my-2 my-lg-0">
+
+
+        <div class="add">
+            <button type="button" class="btn btn-primary"
+                style=" width: 80px; height:40px;  float:right; margin-right: 1%" (click)="back()"> Back </button>
+        </div>
+        <div class="butt">
+            <button type="button" class="btn btn-success" style="width:80px; height:40px; float:left; margin-left: 1%"
+                (click)="add()"> Add </button>
+        </div>
+        <button type="button" class="btn btn-danger" style=" width: 80px; height:40px;  float:right; margin-right: 1%"
+            (click)="logout()"> Logout </button>
+
+    </div>
+
+
+    <br>
+    <table class="table table-striped" style="width:100%">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Id</th>
+                <th></th>
+                <th>Name</th>
+                <th></th>
+                <th>Type</th>
+                <th></th>
+                <th>aType</th>
+                <th></th>
+                <th>From Date</th>
+                <th></th>
+                <th>To Date</th>
+                <th></th>
+                <th>Address</th>
+                <th colspan="6" style="text-align: center;">Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let vd of vendor | paginate:{itemsPerPage:5,currentPage:p}">
+
+                <td></td>
+                <td>{{vd.vd_id}}</td>
+                <td></td>
+                <td>{{vd.vd_name}}</td>
+                <td></td>
+                <td>{{vd.vd_type}}</td>
+                <td></td>
+                <td>{{vd.vd_atype}}</td>
+                <td></td>
+                <td>{{vd.vd_from}}</td>
+                <td></td>
+                <td>{{vd.vd_to}}</td>
+                <td></td>
+                <td>{{vd.vd_addr}}</td>
+                <td></td>
+                <td></td>
+
+                <td><button type="button" class="btn btn-primary" style="width:70px"
+                        (click)="editVendor(vd.vd_id)">Edit</button>
+                    &nbsp;&nbsp;&nbsp;
+                    <button type="button" class="btn btn-danger" mwlConfirmationPopover [popoverTitle]="popoverTitle"
+                        [popoverMessage]="popoverMessage" placement="left" (confirm)="confirmClicked = true"
+                        (cancel)="cancelClicked = true" confirmButtonType="warning" cancelButtonType="default"
+                        (click)="confirmClicked = false; cancelClicked = false" [appendToBody]="true"
+                        (confirm)=delete(vd.vd_id)>
+                        Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <pagination-controls (pageChange)="p =$event"></pagination-controls>
+</div>

@@ -1,0 +1,82 @@
+<div class="container-fluid">
+    <br>
+    <h2 style="text-align:center"><b>Asset Details</b></h2>
+    <br>
+    <br>
+    <div class="form-inline my-2 my-lg-0">
+
+
+        <div class="add">
+            <button type="button" class="btn btn-primary"
+                style=" width: 80px; height:40px;  float:right; margin-right: 1%" (click)="back()"> Back </button>
+        </div>
+        <div class="butt">
+            <button type="button" class="btn btn-success" style="width:80px; height:40px; float:left; margin-left: 1%"
+                (click)="addAsset()"> Add </button>
+        </div>
+        <button type="button" class="btn btn-danger" style=" width: 80px; height:40px;  float:right; margin-right: 1%"
+            (click)="logout()"> Logout </button>
+
+    </div>
+
+
+    <br>
+    <table class="table table-striped" style="width:100%">
+        <thead>
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th>Id</th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th>Asset Name</th>
+                <th></th>
+                <th></th>
+                <th>Asset Type</th>
+                <th></th>
+                <th></th>
+                <th>Asset Class</th>
+
+                <th colspan="6" style="text-align:center">Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let ad of asset | paginate:{itemsPerPage:10,currentPage:p}">
+
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>{{ad.ad_id}}</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>{{ad.ad_name}}</td>
+                <td></td>
+                <td></td>
+                <td>{{ad.ad_type}}</td>
+                <td></td>
+                <td></td>
+                <td>{{ad.ad_class}}</td>
+
+                <td></td>
+                <td></td>
+                <td></td>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <td><button type="button" class="btn btn-primary" style="width:70px"
+                        (click)="editAsset(ad.ad_id)">Edit</button>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <button type="button" class="btn btn-danger" mwlConfirmationPopover [popoverTitle]="popoverTitle"
+                        [popoverMessage]="popoverMessage" placement="left" (confirm)="confirmClicked = true"
+                        (cancel)="cancelClicked = true" confirmButtonType="warning" cancelButtonType="default"
+                        (click)="confirmClicked = false; cancelClicked = false" [appendToBody]="true"
+                        (confirm)=delete(ad.ad_id)>
+                        Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <pagination-controls (pageChange)="p =$event"></pagination-controls>
+</div>

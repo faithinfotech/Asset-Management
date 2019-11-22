@@ -1,0 +1,69 @@
+<div class="container-fluid">
+    <br>
+    <h2 style="text-align:center"><b>Asset Master </b></h2>
+    <br>
+    <br>
+    <div class="form-inline my-2 my-lg-0">
+
+
+        <div class="add">
+            <button type="button" class="btn btn-primary"
+                style=" width: 80px; height:40px;  float:right; margin-right: 1%" (click)="back()"> Back </button>
+        </div>
+        <!-- <div class="butt">
+            <button type="button" class="btn btn-success" style="width:80px; height:40px; float:left; margin-left: 1%"
+                (click)="addMaster()"> Add </button>
+        </div> -->
+        <button type="button" class="btn btn-danger" style=" width: 80px; height:40px;  float:right; margin-right: 1%"
+            (click)="logout()"> Logout </button>
+
+    </div>
+
+
+    <br>
+    <table class="table table-striped" style="width:100%">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Type</th>
+                <th>Make</th>
+                <th>Model</th>
+                <th>Sl.No</th>
+                <th>Man.year</th>
+                <th>Purchase Date</th>
+                <th>Warranty</th>
+                <th>From</th>
+                <th>To</th>
+                <th colspan="6">Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let master of masters | paginate:{itemsPerPage:10,currentPage:p}">
+
+                <td>{{master.am_id}}</td>
+                <td>{{master.am_type}}</td>
+                <td>{{master.am_make}}</td>
+                <td>{{master.am_model}}</td>
+                <td>{{master.am_snumber}}</td>
+                <td>{{master.am_myear}}</td>
+                <td>{{master.am_pdate}}</td>
+                <td>{{master.am_warranty}}</td>
+                <td>{{master.am_from}}</td>
+                <td>{{master.am_to}}</td>
+
+                <td><button type="button" class="btn btn-primary" style="width:70px" (click)="editMaster(master.am_id)">Edit</button></td>
+                <td><button type="button" class="btn btn-danger" mwlConfirmationPopover [popoverTitle]="popoverTitle"
+                        [popoverMessage]="popoverMessage" placement="left" (confirm)="confirmClicked = true"
+                        (cancel)="cancelClicked = true" confirmButtonType="warning" cancelButtonType="default"
+                        (click)="confirmClicked = false; cancelClicked = false" [appendToBody]="true"
+                        (confirm)=delete(master.am_id)>
+                        Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <pagination-controls (pageChange)="p =$event"></pagination-controls>
+</div>
+
+

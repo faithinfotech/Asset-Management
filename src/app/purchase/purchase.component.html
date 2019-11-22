@@ -1,0 +1,77 @@
+
+<div class="container-fluid">
+    <br>
+    <h2 style="text-align:center"><b>Purchase Details</b></h2>
+    <br>
+    <br>
+    <div class="form-inline my-2 my-lg-0">
+
+
+        <div class="add">
+            <button type="button" class="btn btn-primary"
+                style=" width: 80px; height:40px;  float:right; margin-right: 1%" (click)="back()"> Back </button>
+        </div>
+        <div class="butt">
+            <button type="button" class="btn btn-success" style="width:80px; height:40px; float:left; margin-left: 1%"
+                (click)="add()"> Add </button>
+        </div>
+        <button type="button" class="btn btn-danger" style=" width: 80px; height:40px;  float:right; margin-right: 1%"
+            (click)="logout()"> Logout </button>
+
+    </div>
+
+
+    <br>
+    <table class="table table-striped" style="width:100%">
+        <thead>
+            <tr>
+                <th></th>
+                <th>pd_id</th>
+                <th>pd_order</th>
+                <th>pd_type</th>
+                <th>pd_qty</th>
+                <th>pd_vendor</th>
+                <th>pd_date</th>
+                <th>pd_ddate</th>
+              <!--<th>pd_status</th>--> 
+              
+                <th colspan="6" style="text-align:center">Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let pd of purchase | paginate:{itemsPerPage:10,currentPage:p}">
+                <td></td>
+                <td>{{pd.pd_id}}</td>
+                <td>{{pd.pd_order}}</td>
+                <td>{{pd.pd_type}}</td>
+                <td>{{pd.pd_qty}}</td>
+                <td>{{pd.pd_vendor}}</td>
+                <td>new Date({{pd.pd_date}})</td>
+              <!--   <td>{{pd.pd_date.timestamp(date:'dd-mm-yyyy'</td>-->
+                <td>{{pd.pd_date}}</td> 
+             <td>{{pd.pd_ddate}}</td>
+              <!--   <td>{{pd.pd_status}}</td>--> 
+
+              <td >
+                    <div *ngIf="pd.pd_status==='Asset Details registered internally'">
+                            <button type="button" class="btn btn-success" style="width:107px" (click)="assetmaster()">AssetMaster</button>
+                    </div>
+                </td>
+                
+               <td><button type="button" class="btn btn-primary" style="width:70px" (click)="editPurchase(pd.pd_id)">Edit</button></td>
+                <td><button type="button" class="btn btn-danger" mwlConfirmationPopover [popoverTitle]="popoverTitle"
+                        [popoverMessage]="popoverMessage" placement="left" (confirm)="confirmClicked = true"
+                        (cancel)="cancelClicked = true" confirmButtonType="warning" cancelButtonType="default"
+                        (click)="confirmClicked = false; cancelClicked = false" [appendToBody]="true"
+                        (confirm)=delete(pd.pd_id)>
+                        Delete</button>
+
+                </td>
+
+               
+            </tr>
+        </tbody>
+    </table>
+    <pagination-controls (pageChange)="p =$event"></pagination-controls>
+</div>
